@@ -40,7 +40,7 @@ public class Principal extends javax.swing.JFrame {
         tree_canciones = new javax.swing.JTree();
         jScrollPane2 = new javax.swing.JScrollPane();
         ta_letra = new javax.swing.JTextArea();
-        jProgressBar1 = new javax.swing.JProgressBar();
+        pg_t = new javax.swing.JProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,7 +82,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pg_t, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
@@ -102,7 +102,7 @@ public class Principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(100, Short.MAX_VALUE)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pg_t, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -136,6 +136,7 @@ public class Principal extends javax.swing.JFrame {
        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modelo.getRoot();
        DefaultMutableTreeNode categoria1 = new DefaultMutableTreeNode(c.getCategoria());
        raiz.add(categoria1);
+       
        DefaultMutableTreeNode cancion = new DefaultMutableTreeNode(c.getCategoria());
        categoria1.add(cancion);
        modelo.reload();
@@ -146,15 +147,39 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
          ta_letra.setText("");
-        String cancion = tree_canciones.getLastSelectedPathComponent().toString();
-        for (int i = 0; i < canciones.size(); i++) {
-            if (canciones.get(i).getNombre().equals(cancion)) {
-                for (int j = 0; j < canciones.get(i).getCaracteres().size(); j++) {
-                    ta_letra.setText((String)canciones.get(i).getCaracteres().get(j));
+        Cancion cancion1;
+         
+         try {
+            for (int i = 0; i < canciones.size(); i++) {
+                String cancion = tree_canciones.getLastSelectedPathComponent().toString();
+                if (canciones.get(i).getNombre().equals(cancion)) {
+                    for (int j = 0; j < canciones.get(i).getCaracteres().size(); j++) {
+                        ta_letra.setText((String)canciones.get(i).getCaracteres().get(j));
+                        
+                        int numero;
+                        
+//                        if (canciones.get(i).getCaracteres().get(j).equals()) {
+//                            
+//                        }
+                        
+                        HT = new administrarTiempo(this.pg_t, numero = 20);
+                        try { //por si ya esta iniciado
+                                HT.start();
+                        } catch (Exception e) {
+
+                        }
+        HT.setAvanzar(true);
+                        
+                        
+                        
+                    }
+
                 }
-                
-            }
         }
+        } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Seleccione una cancion para reproducirla.");
+        }
+       
        
     }//GEN-LAST:event_jButton3MouseClicked
 
@@ -198,11 +223,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JProgressBar pg_t;
     private javax.swing.JTextArea ta_letra;
     private javax.swing.JTree tree_canciones;
     // End of variables declaration//GEN-END:variables
     ArrayList <Cancion> canciones=  new ArrayList();
+    administrarTiempo HT;
 }
