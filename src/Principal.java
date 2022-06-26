@@ -127,10 +127,9 @@ public class Principal extends javax.swing.JFrame {
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
        String nombre = JOptionPane.showInputDialog(this, "Nombre de la Cancion");
        String categoria = JOptionPane.showInputDialog(this, "Categoria");
-       Cancion c = new Cancion(nombre, categoria);
+       String texto = ta_letra.getText();
+       Cancion c = new Cancion(nombre, categoria, categoria);
        
-       String letra = ta_letra.getText();
-       c.getCaracteres().add(letra);
        
        DefaultTreeModel modelo = (DefaultTreeModel) tree_canciones.getModel();
        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modelo.getRoot();
@@ -153,14 +152,14 @@ public class Principal extends javax.swing.JFrame {
             for (int i = 0; i < canciones.size(); i++) {
                 String cancion = tree_canciones.getLastSelectedPathComponent().toString();
                 if (canciones.get(i).getNombre().equals(cancion)) {
-                    for (int j = 0; j < canciones.get(i).getCaracteres().size(); j++) {
-                        ta_letra.setText((String)canciones.get(i).getCaracteres().get(j));
+                    for (int j = 0; j < canciones.get(i).getCaracteres().length(); j++) {
+                        ta_letra.setText(Character.toString(canciones.get(i).getCaracteres().charAt(j)));
                         
                         int numero;
-                        
-//                        if (canciones.get(i).getCaracteres().get(j).equals()) {
-//                            
-//                        }
+                        numero = canciones.get(i).getCaracteres().charAt(j);
+                        if (canciones.get(i).getCaracteres().get(j).equals()) {
+                            
+                        }
                         
                         HT = new administrarTiempo(this.pg_t, numero = 20);
                         try { //por si ya esta iniciado

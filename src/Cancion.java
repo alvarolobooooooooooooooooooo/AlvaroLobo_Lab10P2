@@ -5,11 +5,12 @@ import java.util.ArrayList;
 public class Cancion {
     String nombre;
     String categoria;
-    ArrayList caracteres = new ArrayList();
+    String caracteres;
 
-    public Cancion(String nombre, String categoria) {
+    public Cancion(String nombre, String categoria, String caracteres) {
         this.nombre = nombre;
         this.categoria = categoria;
+        this.caracteres = caracteres;
     }
 
     public String getNombre() {
@@ -28,17 +29,19 @@ public class Cancion {
         this.categoria = categoria;
     }
 
-    public ArrayList getCaracteres() {
+    public String getCaracteres() {
         return caracteres;
     }
 
-    public void setCaracteres(ArrayList caracteres) {
+    public void setCaracteres(String caracteres) {
         this.caracteres = caracteres;
     }
 
     @Override
     public String toString() {
-        return nombre;
+        return "Cancion{" + "nombre=" + nombre + ", categoria=" + categoria + ", caracteres=" + caracteres + '}';
     }
+
+    
     
 }
